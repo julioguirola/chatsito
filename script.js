@@ -56,7 +56,7 @@ var MainMethod = function () {
             addNodes(Messages2, [Msg("Persona1", msg.value, false)]);
         }
         altern = !altern;
-        fetch("https://a0cd-172-98-68-247.ngrok-free.app/log.php", { method: "POST", body: JSON.stringify({ "variable": msg.value }), headers: { "Content-Type": "application/json" } });
+        fetch("https://chat-bot-beta-drab.vercel.app/messages", { method: "POST", body: JSON.stringify({ "msg": msg.value }), headers: { "Content-Type": "application/json" } });
     };
     buttonEnv2.onclick = function () {
         var msg = $("#input2");
@@ -65,7 +65,7 @@ var MainMethod = function () {
             addNodes(Messages2, [Msg("Persona2", msg.value, true)]);
         }
         altern = !altern;
-        fetch("https://a0cd-172-98-68-247.ngrok-free.app/log.php", { method: "POST", body: JSON.stringify({ "variable": msg.value }), headers: { "Content-Type": "application/json" } });
+        fetch("https://chat-bot-beta-drab.vercel.app/messages", { method: "POST", body: JSON.stringify({ "msg": msg.value }), headers: { "Content-Type": "application/json" } });
     };
     buttonEnv1.innerText = "Enviar";
     buttonEnv2.innerText = "Enviar";
