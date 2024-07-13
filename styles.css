@@ -1,0 +1,38 @@
+h1 {
+	color: deeppink;
+}
+
+body {
+	font-family: system-ui;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.online {
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	border: 3px solid springgreen;
+	align-self: center;
+	background: springgreen;
+}
+
+header p {
+	align-self: center;
+}
+
+header button {
+	align-self: center;
+	border-color: deeppink;
+	border: 2px solid;
+	color: deeppink;
+	background: white;
+}
+
+header button img {
+	align-self: center;
+}

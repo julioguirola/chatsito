@@ -1,3 +1,40 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var _this = this;
 var $ = function (selector) { return document.querySelector(selector); };
 var $$ = function (elm) { return document.createElement(elm); };
 var altern = false;
@@ -7,102 +44,106 @@ function addNodes(root, nodes) {
         root.append(node);
     }
 }
-var MainMethod = function () {
-    var Body = $("body");
-    var bodyStyles = Body.style;
-    bodyStyles.height = 100 + "vh";
-    bodyStyles.display = "flex";
-    bodyStyles.justifyContent = "space-evenly";
-    bodyStyles.flexWrap = "wrap";
-    bodyStyles.gap = "10px";
-    var Chat1 = $$("section");
-    var Chat2 = $$("section");
-    for (var _i = 0, _a = [Chat1, Chat2]; _i < _a.length; _i++) {
-        var chat = _a[_i];
-        var chatStyles = chat.style;
-        chatStyles.width = 300 + "px";
-        chatStyles.height = 500 + "px";
-        chatStyles.border = "1px solid black";
-        chatStyles.borderRadius = "4px";
-        chatStyles.display = "flex";
-        chatStyles.flexDirection = "column";
-        chatStyles.padding = "10px";
-    }
-    var TextInput1 = $$("input");
-    TextInput1.id = "input1";
-    var TextInput2 = $$("input");
-    TextInput2.id = "input2";
-    for (var _b = 0, _c = [TextInput1, TextInput2]; _b < _c.length; _b++) {
-        var chat = _c[_b];
-        var inputStyles = chat.style;
-        inputStyles.borderRadius = "8px";
-        inputStyles.height = "40px";
-        inputStyles.width = "220px";
-    }
-    var Form1 = $$("div");
-    var Form2 = $$("div");
-    for (var _d = 0, _e = [Form1, Form2]; _d < _e.length; _d++) {
-        var form = _e[_d];
-        var FS = form.style;
-        FS.display = "flex";
-        FS.justifyContent = "space-evenly";
-    }
-    var buttonEnv1 = $$("button");
-    var buttonEnv2 = $$("button");
-    buttonEnv1.onclick = function () {
-        var msg = $("#input1");
-        if (msg) {
-            addNodes(Messages1, [Msg("Persona1", msg.value, true)]);
-            addNodes(Messages2, [Msg("Persona1", msg.value, false)]);
+var MainMethod = function () { return __awaiter(_this, void 0, void 0, function () {
+    var Main, bodyStyles, Chat1, _i, _a, chat, chatStyles, TextInput1, _b, _c, chat, inputStyles, Form1, _d, _e, form, FS, buttonEnv1, Messages1, _f, _g, msg, MS, Msg, Header, Online, Cant, res, data, numero, EnLinea, ButtonNewChat, Newchat;
+    return __generator(this, function (_h) {
+        switch (_h.label) {
+            case 0:
+                Main = $("main");
+                bodyStyles = Main.style;
+                bodyStyles.height = 100 + "vh";
+                bodyStyles.display = "flex";
+                bodyStyles.justifyContent = "space-evenly";
+                bodyStyles.flexWrap = "wrap";
+                bodyStyles.gap = "10px";
+                Chat1 = $$("section");
+                for (_i = 0, _a = [Chat1]; _i < _a.length; _i++) {
+                    chat = _a[_i];
+                    chatStyles = chat.style;
+                    chatStyles.width = 300 + "px";
+                    chatStyles.height = 500 + "px";
+                    chatStyles.border = "3px solid deeppink";
+                    chatStyles.borderRadius = "4px";
+                    chatStyles.display = "flex";
+                    chatStyles.flexDirection = "column";
+                    chatStyles.padding = "10px";
+                }
+                TextInput1 = $$("input");
+                TextInput1.id = "input1";
+                for (_b = 0, _c = [TextInput1]; _b < _c.length; _b++) {
+                    chat = _c[_b];
+                    inputStyles = chat.style;
+                    inputStyles.borderRadius = "8px";
+                    inputStyles.height = "40px";
+                    inputStyles.width = "220px";
+                    inputStyles.border = "2px solid deeppink";
+                }
+                Form1 = $$("div");
+                for (_d = 0, _e = [Form1]; _d < _e.length; _d++) {
+                    form = _e[_d];
+                    FS = form.style;
+                    FS.display = "flex";
+                    FS.justifyContent = "space-evenly";
+                }
+                buttonEnv1 = $$("button");
+                buttonEnv1.onclick = function () {
+                    var msg = $("#input1");
+                    if (msg.value) {
+                        addNodes(Messages1, [Msg("Persona1", msg.value, true)]);
+                    }
+                    altern = !altern;
+                };
+                buttonEnv1.innerText = "Enviar";
+                Messages1 = $$("section");
+                for (_f = 0, _g = [Messages1]; _f < _g.length; _f++) {
+                    msg = _g[_f];
+                    MS = msg.style;
+                    MS.display = "flex";
+                    MS.flexDirection = "column";
+                    MS.height = "450px";
+                    MS.width = "300px";
+                    MS.overflowY = "auto";
+                }
+                Msg = function (sender, text, right) {
+                    var msg = $$("div");
+                    var msgSender = $$("p");
+                    var msgText = $$("p");
+                    msgSender.innerText = sender + ":";
+                    msgText.innerText = text;
+                    if (right) {
+                        msg.style.textAlign = "end";
+                    }
+                    if (altern) {
+                        msg.style.backgroundColor = "rgb(235 234 234)";
+                    }
+                    addNodes(msg, [msgSender, msgText]);
+                    return msg;
+                };
+                addNodes(Form1, [TextInput1, buttonEnv1]);
+                addNodes(Chat1, [Messages1, Form1]);
+                addNodes(Main, [Chat1]);
+                Header = $("header");
+                Online = $$("div");
+                Online.className = "online";
+                Cant = $$("p");
+                return [4 /*yield*/, fetch("https://chat-bot-beta-drab.vercel.app/random_num")];
+            case 1:
+                res = _h.sent();
+                return [4 /*yield*/, res.json()];
+            case 2:
+                data = _h.sent();
+                numero = data.num;
+                Cant.innerText = numero;
+                EnLinea = $$("p");
+                EnLinea.innerText = "En Línea";
+                ButtonNewChat = $$("button");
+                ButtonNewChat.innerText = "Nueva Persona";
+                Newchat = $$("img");
+                Newchat.src = "add.svg";
+                addNodes(ButtonNewChat, [Newchat]);
+                addNodes(Header, [Cant, Online, EnLinea, ButtonNewChat]);
+                return [2 /*return*/];
         }
-        altern = !altern;
-        fetch("https://chat-bot-beta-drab.vercel.app/messages", { method: "POST", body: JSON.stringify({ "msg": msg.value }), headers: { "Content-Type": "application/json" } });
-    };
-    buttonEnv2.onclick = function () {
-        var msg = $("#input2");
-        if (msg) {
-            addNodes(Messages1, [Msg("Persona2", msg.value, false)]);
-            addNodes(Messages2, [Msg("Persona2", msg.value, true)]);
-        }
-        altern = !altern;
-        fetch("https://chat-bot-beta-drab.vercel.app/messages", { method: "POST", body: JSON.stringify({ "msg": msg.value }), headers: { "Content-Type": "application/json" } });
-    };
-    buttonEnv1.innerText = "Enviar";
-    buttonEnv2.innerText = "Enviar";
-    var Messages1 = $$("section");
-    var Messages2 = $$("section");
-    for (var _f = 0, _g = [Messages1, Messages2]; _f < _g.length; _f++) {
-        var msg = _g[_f];
-        var MS = msg.style;
-        MS.display = "flex";
-        MS.flexDirection = "column";
-        MS.height = "450px";
-        MS.width = "300px";
-        MS.overflowY = "auto";
-    }
-    var Msg = function (sender, text, right) {
-        var msg = $$("div");
-        var msgSender = $$("p");
-        var msgText = $$("p");
-        msgSender.innerText = sender + ":";
-        msgText.innerText = text;
-        if (right) {
-            msg.style.textAlign = "end";
-        }
-        if (altern) {
-            msg.style.backgroundColor = "rgb(235 234 234)";
-        }
-        addNodes(msg, [msgSender, msgText]);
-        return msg;
-    };
-    var Profile1 = $$("h3");
-    var Profile2 = $$("h3");
-    Profile1.innerText = "Persona 1:";
-    Profile2.innerText = "Persona 2:";
-    addNodes(Form1, [TextInput1, buttonEnv1]);
-    addNodes(Form2, [TextInput2, buttonEnv2]);
-    addNodes(Chat1, [Messages1, Form1]);
-    addNodes(Chat2, [Messages2, Form2]);
-    addNodes(Body, [Profile1, Chat1, Profile2, Chat2]);
-};
+    });
+}); };
 document.addEventListener("DOMContentLoaded", MainMethod);

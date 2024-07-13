@@ -8,9 +8,9 @@ function addNodes (root: HTMLElement ,nodes: Array<HTMLElement>) {
 	}
 } 
 
-const MainMethod = () => {
-	const Body = $("body")
-	const bodyStyles = Body.style
+const MainMethod = async () => {
+	const Main = $("main")
+	const bodyStyles = Main.style
 	bodyStyles.height = 100 + "vh"
 	bodyStyles.display = "flex"
 	bodyStyles.justifyContent = "space-evenly"
@@ -19,13 +19,12 @@ const MainMethod = () => {
 
 
 	const Chat1 = $$("section")
-	const Chat2 = $$("section")
 
-	for (let chat of [Chat1, Chat2]) {
+	for (let chat of [Chat1]) {
 		let chatStyles = chat.style
 		chatStyles.width = 300 + "px"
 		chatStyles.height = 500 + "px"
-		chatStyles.border = "1px solid black"
+		chatStyles.border = "3px solid deeppink"
 		chatStyles.borderRadius = "4px"
 		chatStyles.display = "flex"
 		chatStyles.flexDirection = "column"
@@ -34,21 +33,19 @@ const MainMethod = () => {
 
 	const TextInput1 = $$("input")
 	TextInput1.id = "input1"
-	const TextInput2 = $$("input")
-	TextInput2.id = "input2"
 
-	for (let chat of [TextInput1, TextInput2]) {
+	for (let chat of [TextInput1]) {
 		let inputStyles = chat.style
 
 		inputStyles.borderRadius = "8px"
 		inputStyles.height = "40px"
 		inputStyles.width = "220px"
+		inputStyles.border = "2px solid deeppink"
 	}
 
 	const Form1 = $$("div")
-	const Form2 = $$("div")
 
-	for (let form of [Form1, Form2]) {
+	for (let form of [Form1]) {
 		
 		let FS = form.style
 		FS.display = "flex"
@@ -56,39 +53,22 @@ const MainMethod = () => {
 	}
 
 	const buttonEnv1 = $$("button")
-	const buttonEnv2 = $$("button")
 
 	buttonEnv1.onclick = () => {
 		const msg = $("#input1") as HTMLInputElement
 
-		if (msg) {
+		if (msg.value) {
 			addNodes(Messages1, [Msg("Persona1", msg.value, true)])
-			addNodes(Messages2, [Msg("Persona1", msg.value, false)])
 		}
 		altern = !altern
 
-		fetch("https://chat-bot-beta-drab.vercel.app/messages", {method: "POST", body: JSON.stringify({"msg" : msg.value}), headers: {"Content-Type" : "application/json"}})
-	}
-
-	buttonEnv2.onclick = () => {
-		const msg = $("#input2") as HTMLInputElement
-
-		if (msg) {
-			addNodes(Messages1, [Msg("Persona2", msg.value, false)])
-			addNodes(Messages2, [Msg("Persona2", msg.value, true)])
-		}
-		altern = !altern
-
-		fetch("https://chat-bot-beta-drab.vercel.app/messages", {method: "POST", body: JSON.stringify({"msg" : msg.value}), headers: {"Content-Type" : "application/json"}})
 	}
 
 	buttonEnv1.innerText = "Enviar"
-	buttonEnv2.innerText = "Enviar"
 
 	const Messages1 = $$("section")
-	const Messages2 = $$("section")
 
-	for (let msg of [Messages1, Messages2]) {
+	for (let msg of [Messages1]) {
 		let MS = msg.style
 
 		MS.display = "flex"
@@ -120,17 +100,35 @@ const MainMethod = () => {
 		return msg
 	}
 
-	const Profile1 = $$("h3")
-	const Profile2 = $$("h3")
-
-	Profile1.innerText = "Persona 1:"
-	Profile2.innerText = "Persona 2:"
-
 	addNodes(Form1, [TextInput1, buttonEnv1])
-	addNodes(Form2, [TextInput2, buttonEnv2])
 	addNodes(Chat1, [Messages1 ,Form1])
-	addNodes(Chat2, [Messages2 ,Form2])
-	addNodes(Body, [Profile1, Chat1, Profile2, Chat2])
+	addNodes(Main, [Chat1])
+
+	const Header = $("header")
+	const Online = $$("div")
+	Online.className = "online"
+
+	const Cant = $$("p")
+
+	const res = await fetch("https://chat-bot-beta-drab.vercel.app/random_num")
+	const data = await res.json()
+	const numero = data.num
+
+	Cant.innerText = numero
+
+	const EnLinea = $$("p")
+	EnLinea.innerText = "En Línea"
+
+	const ButtonNewChat = $$("button")
+	ButtonNewChat.innerText = "Nueva Persona"
+
+	const Newchat = $$("img") as HTMLImageElement
+
+	Newchat.src = "add.svg"
+
+	addNodes(ButtonNewChat, [Newchat])
+	addNodes(Header, [Cant, Online, EnLinea, ButtonNewChat])
+
 }
 
 document.addEventListener("DOMContentLoaded", MainMethod)
