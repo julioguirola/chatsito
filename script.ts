@@ -104,7 +104,7 @@ const MainMethod = async () => {
 	addNodes(Chat1, [Messages1 ,Form1])
 	addNodes(Main, [Chat1])
 
-	const Header = $("header")
+	const Header = $(".headersub")
 	const Online = $$("div")
 	Online.className = "online"
 

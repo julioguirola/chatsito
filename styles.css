@@ -8,8 +8,13 @@ body {
 
 header {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	gap: 20px;
+}
+
+header div {
+	gap: 10px;
 }
 
 .online {
@@ -35,4 +40,8 @@ header button {
 
 header button img {
 	align-self: center;
+}
+
+header div {
+	display: flex;
 }

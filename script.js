@@ -122,7 +122,7 @@ var MainMethod = function () { return __awaiter(_this, void 0, void 0, function 
                 addNodes(Form1, [TextInput1, buttonEnv1]);
                 addNodes(Chat1, [Messages1, Form1]);
                 addNodes(Main, [Chat1]);
-                Header = $("header");
+                Header = $(".headersub");
                 Online = $$("div");
                 Online.className = "online";
                 Cant = $$("p");
