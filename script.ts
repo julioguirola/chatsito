@@ -1,6 +1,9 @@
 var $ = (selector) : HTMLElement => document.querySelector(selector)
 var $$ = (elm) : HTMLElement => document.createElement(elm)
 var altern = false
+var count = 0
+var person = ""
+var historia
 
 function addNodes (root: HTMLElement ,nodes: Array<HTMLElement>) {
 	for (let node of nodes) {
@@ -54,14 +57,34 @@ const MainMethod = async () => {
 
 	const buttonEnv1 = $$("button")
 
-	buttonEnv1.onclick = () => {
+	buttonEnv1.onclick = async () => {
 		const msg = $("#input1") as HTMLInputElement
 
 		if (msg.value) {
-			addNodes(Messages1, [Msg("Persona1", msg.value, true)])
+			addNodes(Messages1, [Msg("Tú", msg.value, true)])
+			const res = await fetch("https://chat-bot-beta-drab.vercel.app/tindercito", {
+		      method : "POST",
+		      body : JSON.stringify({history : historia, msg : msg.value })
+		    })
+
+		    const resp = await res.json()
+		    const data = resp.msg
+			altern = !altern
+		    addNodes(Messages1, [Msg(person, data, false)])
+		    const template = [
+		        {
+		          role : "user",
+		          parts: [{ text: msg.value }]
+		        },
+		        {
+		          role : "model",
+		          parts: [{ text: data }]
+		        }
+		      ]
+      		historia = [...historia, ...template]
 		}
 		altern = !altern
-
+		msg.value = ""
 	}
 
 	buttonEnv1.innerText = "Enviar"
@@ -100,9 +123,12 @@ const MainMethod = async () => {
 		return msg
 	}
 
+	const Who = $$("section")
+
+	Who.className = "userinfo"
+
 	addNodes(Form1, [TextInput1, buttonEnv1])
 	addNodes(Chat1, [Messages1 ,Form1])
-	addNodes(Main, [Chat1])
 
 	const Header = $(".headersub")
 	const Online = $$("div")
@@ -120,13 +146,49 @@ const MainMethod = async () => {
 	EnLinea.innerText = "En Línea"
 
 	const ButtonNewChat = $$("button")
-	ButtonNewChat.innerText = "Nueva Persona"
+	ButtonNewChat.innerText = "Empezar a chatear"
 
-	const Newchat = $$("img") as HTMLImageElement
 
-	Newchat.src = "add.svg"
+	
 
-	addNodes(ButtonNewChat, [Newchat])
+	const Picture = $$("img") as HTMLImageElement
+	const UserName = $$("span")
+
+	const newChat = async () => {
+		Messages1.innerHTML = ""
+		count++;
+		$("span").innerText = "Buscando pareja ..."
+		const res = await fetch(`https://randomuser.me//api`)
+		const data = await res.json()
+		UserName.innerText = data.results[0].name.first + " " + data.results[0].name.last
+		person = data.results[0].name.first + " " + data.results[0].name.last
+		Picture.src = data.results[0].picture.medium 
+
+		if (count == 5) {
+			count = 0
+			const res = await fetch("https://chat-bot-beta-drab.vercel.app/random_num")
+			const data = await res.json()
+			const numero = data.num
+
+			Cant.innerText = numero
+		}
+		ButtonNewChat.innerText = "Nueva Persona"
+		historia = [
+		        {
+		          role : "user",
+		          parts: [{ text: `Imagina que tu nombre es ${person} ` }]
+		        },
+		        {
+		          role : "model",
+		          parts: [{ text: "esta bien seré " + person }]
+		        }
+		      ]
+	}
+
+	ButtonNewChat.onclick = newChat
+
+	addNodes(Who, [Picture, UserName])
+	addNodes(Main, [Who, Chat1])
 	addNodes(Header, [Cant, Online, EnLinea, ButtonNewChat])
 
 }

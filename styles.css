@@ -39,3 +39,21 @@ header button img {
 header div {
 	display: flex;
 }
+
+.userinfo {
+	width: 200px;
+	border: 2px solid deeppink;
+	border-radius: 8px;
+	padding: 10px;
+	display: flex;
+	gap: 20px;
+	height: 100px;
+}
+
+.userinfo img {
+	width: 100px;
+}
+
+.userinfo span {
+	align-self: center;
+}
