@@ -105,7 +105,7 @@ var MainMethod = function () { return __awaiter(_this, void 0, void 0, function 
                         switch (_a.label) {
                             case 0:
                                 msg = $("#input1");
-                                if (!msg.value) return [3 /*break*/, 3];
+                                if (!(msg.value && person)) return [3 /*break*/, 3];
                                 addNodes(Messages1, [Msg("Tú", msg.value, true)]);
                                 return [4 /*yield*/, fetch("https://chat-bot-beta-drab.vercel.app/tindercito", {
                                         method: "POST",
@@ -130,11 +130,10 @@ var MainMethod = function () { return __awaiter(_this, void 0, void 0, function 
                                     }
                                 ];
                                 historia = __spreadArray(__spreadArray([], historia, true), template, true);
-                                _a.label = 3;
-                            case 3:
                                 altern = !altern;
                                 msg.value = "";
-                                return [2 /*return*/];
+                                _a.label = 3;
+                            case 3: return [2 /*return*/];
                         }
                     });
                 }); };
@@ -219,7 +218,7 @@ var MainMethod = function () { return __awaiter(_this, void 0, void 0, function 
                                 historia = [
                                     {
                                         role: "user",
-                                        parts: [{ text: "Imagina que tu nombre es ".concat(person, " ") }]
+                                        parts: [{ text: "Tu ser\u00E1s ".concat(person, ", hablame como si fueras una persona, cualquier pregunta que te haga sobre tu informacion personal la respondes con datos falsos, recuerda, eres una persona") }]
                                     },
                                     {
                                         role: "model",

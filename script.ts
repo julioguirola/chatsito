@@ -60,7 +60,7 @@ const MainMethod = async () => {
 	buttonEnv1.onclick = async () => {
 		const msg = $("#input1") as HTMLInputElement
 
-		if (msg.value) {
+		if (msg.value && person) {
 			addNodes(Messages1, [Msg("Tú", msg.value, true)])
 			const res = await fetch("https://chat-bot-beta-drab.vercel.app/tindercito", {
 		      method : "POST",
@@ -82,9 +82,9 @@ const MainMethod = async () => {
 		        }
 		      ]
       		historia = [...historia, ...template]
+			altern = !altern
+			msg.value = ""
 		}
-		altern = !altern
-		msg.value = ""
 	}
 
 	buttonEnv1.innerText = "Enviar"
@@ -176,7 +176,7 @@ const MainMethod = async () => {
 		historia = [
 		        {
 		          role : "user",
-		          parts: [{ text: `Imagina que tu nombre es ${person} ` }]
+		          parts: [{ text: `Tu serás ${person}, hablame como si fueras una persona, cualquier pregunta que te haga sobre tu informacion personal la respondes con datos falsos, recuerda, eres una persona` }]
 		        },
 		        {
 		          role : "model",
